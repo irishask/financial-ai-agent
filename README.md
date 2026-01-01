@@ -285,7 +285,7 @@ For complete technical details, see: `docs/FINAL_Financial_AI_Agent_Architecture
 
 ## 👤 Author
 
-**[Your Name]**  
+**Irena SK**  
 Data Scientist | GenAI Specialist
 
 ---
