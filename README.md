@@ -23,6 +23,7 @@ Agent: "You spent $389.40 on dining in November compared to $668.20 in
 BackOffice Log: [complete audit trail with data sources, filters, calculations]
 ```
 
+
 ---
 
 ## 🏗️ Architecture
