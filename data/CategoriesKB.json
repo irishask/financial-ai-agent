@@ -1,0 +1,692 @@
+{
+  "category_groups": [
+    {
+      "categoryGroupId": "CG100",
+      "categoryGroupName": "Transportation",
+      "description": "All expenses related to moving people and goods from one location to another. This encompasses vehicle operation costs, public transit usage, ride services, and mobility-related fees. Represents the complete spectrum of personal and family transportation needs regardless of specific mode of transport, including fuel, parking, fares, and travel services.",
+      "example_phrases": ["transportation", "transport"],
+      "subcategories": [
+        {
+          "subCategoryId": "C101",
+          "subCategoryName": "Gas Station",
+          "description": "Fuel purchases for vehicle operation involving gasoline, diesel, or alternative fuels. Transactions occur at fuel pumps and gas stations where customers fill vehicle tanks. Characterized by volume-based pricing and direct vehicle refueling at retail fuel establishments.",
+          "example_phrases": ["gas station", "fuel"]
+        },
+        {
+          "subCategoryId": "C102",
+          "subCategoryName": "Parking",
+          "description": "Parking space rental and vehicle storage fees charged by parking facilities. Transactions include parking meters, parking lots, garages, and valet services. Characterized by time-based or flat-rate charges for temporary vehicle storage at commercial or public parking locations.",
+          "example_phrases": ["parking"]
+        },
+        {
+          "subCategoryId": "C103",
+          "subCategoryName": "Public Transportation",
+          "description": "Fare payments for scheduled public transit services including buses, subways, trains, and commuter rail systems. Transactions involve purchasing tickets, passes, or fare cards for shared transportation operated by transit authorities. Distinct from private vehicle use or ride-sharing services.",
+          "example_phrases": ["public transportation", "public transit"]
+        },
+        {
+          "subCategoryId": "C107",
+          "subCategoryName": "Taxi & Ride Sharing",
+          "description": "On-demand private transportation services provided by taxis, ride-sharing platforms, and car services. Transactions involve app-based or metered rides with individual drivers using personal or commercial vehicles. Characterized by point-to-point transportation with variable pricing based on distance and time.",
+          "example_phrases": ["taxi", "ride sharing"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG200",
+      "categoryGroupName": "Utilities & Bills",
+      "description": "All recurring expenses for essential household services and infrastructure. This encompasses energy utilities, water and sewer services, telecommunications, and other regular household service bills. Represents the ongoing operational costs of maintaining a functional household, typically involving monthly or regular billing cycles from utility providers.",
+      "example_phrases": ["utilities", "bills"],
+      "subcategories": [
+        {
+          "subCategoryId": "C201",
+          "subCategoryName": "Electricity",
+          "description": "Electric power utility service bills charged by electricity providers for residential power consumption. Transactions represent usage-based billing for electrical energy supplied to homes and businesses. Characterized by regular monthly billing cycles measuring kilowatt-hour usage from electric utility companies.",
+          "example_phrases": ["electricity", "electric"]
+        },
+        {
+          "subCategoryId": "C202",
+          "subCategoryName": "Water & Sewer",
+          "description": "Water utility service bills for fresh water supply and wastewater treatment charged by municipal or private water companies. Transactions cover both potable water delivery and sewage disposal services. Typically billed together based on water volume consumption measured in gallons or cubic meters.",
+          "example_phrases": ["water", "sewer"]
+        },
+        {
+          "subCategoryId": "C203",
+          "subCategoryName": "Natural Gas",
+          "description": "Natural gas utility bills for home heating, cooking, and hot water services provided by gas companies. Transactions represent consumption of natural gas delivered through underground pipelines. Characterized by seasonal variation with higher usage during heating months, measured in therms or cubic feet.",
+          "example_phrases": ["natural gas", "gas utility"]
+        },
+        {
+          "subCategoryId": "C204",
+          "subCategoryName": "Phone & Mobile",
+          "description": "Telecommunications service bills for mobile phone, landline, and wireless communication services. Transactions cover voice calling, text messaging, and cellular data plans from wireless carriers and phone service providers. Typically involves monthly subscription fees plus usage-based charges for services beyond plan limits.",
+          "example_phrases": ["phone", "mobile"]
+        },
+        {
+          "subCategoryId": "C205",
+          "subCategoryName": "Internet & Cable",
+          "description": "Broadband internet and cable television subscription services provided by telecommunications companies. Transactions include monthly fees for internet connectivity, cable TV packages, and bundled communication services. Characterized by tiered service plans based on internet speed and channel selection from cable and internet service providers.",
+          "example_phrases": ["internet", "cable"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG300",
+      "categoryGroupName": "Healthcare & Medical",
+      "description": "All expenses related to maintaining physical health, treating medical conditions, and accessing healthcare services. This encompasses professional medical consultations, diagnostic procedures, therapeutic treatments, preventive care, medical products, and health-related services. Represents the complete spectrum of personal healthcare spending across all medical specialties, facilities, and health service providers.",
+      "example_phrases": ["healthcare", "medical"],
+      "subcategories": [
+        {
+          "subCategoryId": "C301",
+          "subCategoryName": "Doctor & Clinic",
+          "description": "Professional medical consultations and examinations provided by physicians at medical clinics, offices, and outpatient facilities. Services include routine checkups, diagnostic consultations, treatment appointments, and follow-up visits with general practitioners and medical specialists. Characterized by in-person or telehealth medical consultations for diagnosis and treatment planning.",
+          "example_phrases": ["doctor", "clinic"]
+        },
+        {
+          "subCategoryId": "C302",
+          "subCategoryName": "Pharmacy",
+          "description": "Retail purchases of prescription medications dispensed by licensed pharmacists and over-the-counter drugs at pharmaceutical retail establishments. Transactions involve presenting prescriptions for filling, purchasing medicines, vitamins, and health products from pharmacy stores and drugstores. Distinct from direct medical care as these are product purchases focused on medications and pharmaceutical retail.",
+          "example_phrases": ["pharmacy"]
+        },
+        {
+          "subCategoryId": "C303",
+          "subCategoryName": "Hospital",
+          "description": "Hospital facility services including emergency room visits, inpatient stays, surgical procedures, and specialized hospital-based treatments. Transactions cover acute care services provided in hospital settings requiring advanced medical facilities and overnight stays. Characterized by high-cost medical interventions and facility fees distinct from routine outpatient care.",
+          "example_phrases": ["hospital"]
+        },
+        {
+          "subCategoryId": "C304",
+          "subCategoryName": "Dental",
+          "description": "Professional dental services provided by dentists and dental hygienists for oral health maintenance and treatment. Services include teeth cleaning, examinations, fillings, extractions, orthodontics, and other dental procedures performed at dental clinics and offices. Focused specifically on oral and dental health care distinct from general medical services.",
+          "example_phrases": ["dental", "dentist"]
+        },
+        {
+          "subCategoryId": "C305",
+          "subCategoryName": "Vision & Optical",
+          "description": "Eye care services and vision correction products including eye examinations, prescription eyeglasses, contact lenses, and optical products. Transactions involve optometrist appointments, vision testing, and purchases from optical retail locations. Specialized in visual health and corrective eyewear distinct from general healthcare services.",
+          "example_phrases": ["vision", "optical"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG400",
+      "categoryGroupName": "Entertainment",
+      "description": "All expenses related to leisure activities, cultural experiences, and recreational entertainment. This encompasses live events, media consumption, gaming, hobbies, and activities pursued for enjoyment and relaxation. Represents discretionary spending on entertainment experiences and content across both in-person and digital platforms.",
+      "example_phrases": ["entertainment"],
+      "subcategories": [
+        {
+          "subCategoryId": "C401",
+          "subCategoryName": "Movies & Cinema",
+          "description": "Movie theater admissions and cinema experiences including ticket purchases for theatrical film screenings. Transactions occur at movie theater box offices and include both advance and day-of-show ticket purchases. Characterized by venue-based entertainment at commercial movie theaters and cinema chains.",
+          "example_phrases": ["movies", "cinema"]
+        },
+        {
+          "subCategoryId": "C402",
+          "subCategoryName": "Concerts & Events",
+          "description": "Live entertainment event tickets including concerts, theatrical performances, sports events, and cultural shows. Transactions involve purchasing admission to live performances and events through ticketing platforms and box offices. Characterized by time-specific event access and venue-based entertainment experiences with live performers or sporting competitions.",
+          "example_phrases": ["concerts", "events"]
+        },
+        {
+          "subCategoryId": "C403",
+          "subCategoryName": "Streaming Services",
+          "description": "Subscription-based digital content platforms providing on-demand video, music, and audio entertainment streaming. Transactions represent recurring monthly or annual subscription fees for unlimited access to digital media libraries. Characterized by internet-delivered entertainment content from streaming service providers accessible across multiple devices.",
+          "example_phrases": ["streaming"]
+        },
+        {
+          "subCategoryId": "C404",
+          "subCategoryName": "Video Games",
+          "description": "Video game purchases, gaming platform subscriptions, and in-game digital content acquisitions. Transactions include buying physical or digital games, gaming console software, PC games, and downloadable gaming content. Focused specifically on interactive digital gaming entertainment across gaming platforms and digital game stores.",
+          "example_phrases": ["video games", "gaming"]
+        },
+        {
+          "subCategoryId": "C405",
+          "subCategoryName": "Hobbies & Recreation",
+          "description": "Recreational hobby supplies, craft materials, and leisure activity equipment not categorized in other entertainment subcategories. Transactions involve purchasing materials and supplies for personal hobbies, crafts, and recreational pursuits. Encompasses diverse leisure activities and hobby-related purchases from art supplies to recreational equipment.",
+          "example_phrases": ["hobbies", "recreation"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG500",
+      "categoryGroupName": "Travel",
+      "description": "All expenses related to temporary travel away from home for vacation, leisure, or personal trips. This encompasses transportation to destinations, temporary accommodations, travel packages, and trip-related services. Represents discretionary spending on travel experiences and tourism activities distinct from daily commuting and local transportation.",
+      "example_phrases": ["travel", "vacation"],
+      "subcategories": [
+        {
+          "subCategoryId": "C501",
+          "subCategoryName": "Airlines",
+          "description": "Commercial airline tickets for passenger air travel including domestic and international flights. Transactions involve purchasing airfare from airlines or travel booking platforms for scheduled commercial aviation services. Characterized by fixed-route air transportation with advance booking and ticketed seating on commercial aircraft.",
+          "example_phrases": ["airlines", "flights"]
+        },
+        {
+          "subCategoryId": "C502",
+          "subCategoryName": "Hotels & Lodging",
+          "description": "Temporary accommodations during travel including hotel rooms, motels, resorts, and short-term rental properties. Transactions cover nightly or multi-night stays at hospitality establishments or vacation rental properties. Characterized by temporary lodging away from primary residence for travel and vacation purposes.",
+          "example_phrases": ["hotels", "lodging"]
+        },
+        {
+          "subCategoryId": "C503",
+          "subCategoryName": "Car Rental",
+          "description": "Temporary vehicle rental services for personal transportation during travel periods. Transactions involve renting automobiles from car rental agencies for short-term use typically during vacations or business trips. Characterized by time-based vehicle rental with insurance options from car rental companies at airports and travel locations.",
+          "example_phrases": ["car rental"]
+        },
+        {
+          "subCategoryId": "C504",
+          "subCategoryName": "Vacation Packages",
+          "description": "Bundled travel arrangements combining multiple travel services into single packaged offerings including cruises, all-inclusive resorts, and tour packages. Transactions represent comprehensive vacation deals purchased through travel agencies or tour operators. Characterized by pre-arranged itineraries bundling transportation, accommodation, and activities into unified vacation experiences.",
+          "example_phrases": ["vacation packages", "cruise"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG600",
+      "categoryGroupName": "Shopping",
+      "description": "All retail purchases of consumer goods and merchandise not specifically categorized as groceries, dining, or specialized services. This encompasses clothing, electronics, home goods, general retail, and online shopping across diverse product categories. Represents discretionary consumer spending on tangible goods and merchandise from retail establishments and e-commerce platforms.",
+      "example_phrases": ["shopping"],
+      "subcategories": [
+        {
+          "subCategoryId": "C601",
+          "subCategoryName": "Department Stores",
+          "description": "General merchandise purchases from multi-category department stores and large-format retail establishments. Transactions involve buying diverse product categories including clothing, home goods, and accessories under one roof. Characterized by broad merchandise selection at traditional department store chains and big-box retailers.",
+          "example_phrases": ["department stores"]
+        },
+        {
+          "subCategoryId": "C602",
+          "subCategoryName": "Online Shopping",
+          "description": "Internet-based retail purchases from e-commerce platforms and online marketplaces for goods delivered to customers. Transactions occur through digital shopping interfaces with home or pickup delivery fulfillment. Characterized by web-based purchasing from online retailers and e-commerce sites across diverse product categories.",
+          "example_phrases": ["online shopping"]
+        },
+        {
+          "subCategoryId": "C603",
+          "subCategoryName": "Electronics",
+          "description": "Consumer electronics purchases including computers, smartphones, tablets, televisions, and electronic devices from specialty electronics retailers. Transactions involve buying technology products and electronic equipment from electronics stores and tech retailers. Focused specifically on electronic and technology product purchases from dedicated electronics merchants.",
+          "example_phrases": ["electronics"]
+        },
+        {
+          "subCategoryId": "C604",
+          "subCategoryName": "Clothing & Apparel",
+          "description": "Clothing, footwear, and fashion accessory purchases from apparel retailers and fashion stores. Transactions include buying garments, shoes, and fashion items for personal wear from clothing boutiques and fashion retailers. Characterized by apparel and fashion merchandise distinct from athletic wear or specialized clothing categories.",
+          "example_phrases": ["clothing", "apparel"]
+        },
+        {
+          "subCategoryId": "C605",
+          "subCategoryName": "Jewelry & Accessories",
+          "description": "Jewelry, watches, and fashion accessory purchases including precious metals, gemstones, and decorative personal items. Transactions occur at jewelry stores and accessory boutiques for luxury and fashion accessories. Characterized by higher-value personal adornment items from specialized jewelry retailers.",
+          "example_phrases": ["jewelry", "accessories"]
+        },
+        {
+          "subCategoryId": "C606",
+          "subCategoryName": "Books & Media",
+          "description": "Physical books, magazines, newspapers, and non-streaming media purchases from bookstores and media retailers. Transactions involve buying printed publications and physical media products. Distinct from digital subscriptions and streaming services, focused on tangible printed and physical media products.",
+          "example_phrases": ["books", "media"]
+        },
+        {
+          "subCategoryId": "C607",
+          "subCategoryName": "Shopping (General)",
+          "description": "General retail purchases and miscellaneous shopping transactions not fitting other specific subcategories. Encompasses diverse retail spending at various merchants including specialty stores and uncategorized retail locations. Serves as catch-all for retail transactions without specific category classification.",
+          "example_phrases": ["shopping"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG700",
+      "categoryGroupName": "Personal Care",
+      "description": "All expenses related to personal grooming, hygiene, appearance maintenance, and self-care services. This encompasses salon services, barber visits, spa treatments, cosmetics, and personal care products. Represents spending on personal appearance and hygiene maintenance through both professional services and consumer products.",
+      "example_phrases": ["personal care"],
+      "subcategories": [
+        {
+          "subCategoryId": "C701",
+          "subCategoryName": "Hair Salon & Barber",
+          "description": "Professional hair cutting, styling, coloring, and hair care services provided at salons and barbershops. Transactions include haircuts, hair treatments, styling appointments, and related hair services from professional stylists and barbers. Characterized by appointment-based personal grooming services focused on hair care and styling.",
+          "example_phrases": ["hair salon", "barber"]
+        },
+        {
+          "subCategoryId": "C702",
+          "subCategoryName": "Spa & Massage",
+          "description": "Spa treatments, massage therapy, and relaxation services provided at wellness facilities and massage establishments. Transactions involve purchasing therapeutic massages, spa packages, and wellness treatments. Characterized by personal wellness and relaxation services in spa and massage therapy settings.",
+          "example_phrases": ["spa", "massage"]
+        },
+        {
+          "subCategoryId": "C703",
+          "subCategoryName": "Cosmetics & Beauty",
+          "description": "Cosmetics, beauty products, skincare items, and makeup purchases from beauty retailers and cosmetics stores. Transactions involve buying beauty and personal care products including makeup, skincare, fragrances, and beauty supplies. Focused on beauty product retail purchases distinct from professional beauty services.",
+          "example_phrases": ["cosmetics", "beauty"]
+        },
+        {
+          "subCategoryId": "C704",
+          "subCategoryName": "Nail Salon",
+          "description": "Professional nail care services including manicures, pedicures, and nail treatments at nail salons. Transactions involve appointment-based nail grooming and nail art services from nail technicians. Specialized in nail care and nail cosmetic services distinct from other beauty treatments.",
+          "example_phrases": ["nail salon"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG800",
+      "categoryGroupName": "Dining",
+      "description": "All expenses related to prepared food and beverage consumption outside the home. This encompasses restaurant meals, fast food, cafes, food delivery services, and beverage establishments. Represents spending on ready-to-eat food and dining experiences at food service establishments or through food delivery platforms, distinct from grocery shopping for home food preparation.",
+      "example_phrases": ["dining"],
+      "subcategories": [
+        {
+          "subCategoryId": "C801",
+          "subCategoryName": "Dining (General)",
+          "description": "General restaurant meals and dining experiences not specifically categorized as fast food or cafes. Encompasses diverse restaurant transactions at various dining establishments including casual and upscale restaurants. Serves as primary dining category for sit-down restaurant meals and general food service purchases.",
+          "example_phrases": ["dining", "restaurants"]
+        },
+        {
+          "subCategoryId": "C802",
+          "subCategoryName": "Fast Food",
+          "description": "Quick-service restaurant purchases at fast food chains and quick-serve establishments. Transactions involve rapid food service with limited table service, typically at counter-service restaurants and drive-throughs. Characterized by standardized menus, quick preparation, and counter or drive-through ordering at fast food chains.",
+          "example_phrases": ["fast food"]
+        },
+        {
+          "subCategoryId": "C803",
+          "subCategoryName": "Restaurants",
+          "description": "Full-service restaurant dining experiences with table service and server-attended meals at sit-down establishments. Transactions involve traditional restaurant dining with menu ordering, table service, and tipping. Characterized by leisurely dining experiences with waiter service at full-service restaurant establishments.",
+          "example_phrases": ["restaurants"]
+        },
+        {
+          "subCategoryId": "C805",
+          "subCategoryName": "Food Delivery",
+          "description": "Restaurant food ordered through delivery platforms and food delivery services for home delivery. Transactions occur via food delivery apps and services that transport prepared meals from restaurants to customers. Characterized by delivery fees and digital ordering through food delivery platforms distinct from direct restaurant dining.",
+          "example_phrases": ["food delivery", "delivery"]
+        },
+        {
+          "subCategoryId": "C806",
+          "subCategoryName": "Cafes & Coffee Shops",
+          "description": "Coffee beverages, pastries, and light refreshments purchased at cafes, coffee shops, and coffeehouse establishments. Transactions involve buying coffee drinks, tea, baked goods, and light snacks at specialty beverage establishments. Specialized in coffee-centric establishments distinct from full-service restaurants.",
+          "example_phrases": ["cafes", "coffee shops"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG900",
+      "categoryGroupName": "Education",
+      "description": "All expenses related to learning, academic pursuits, and educational development. This encompasses tuition payments, educational supplies, course fees, and learning resources. Represents investment in formal education, skill development, and knowledge acquisition through educational institutions and learning platforms.",
+      "example_phrases": ["education"],
+      "subcategories": [
+        {
+          "subCategoryId": "C901",
+          "subCategoryName": "Tuition & Fees",
+          "description": "Educational institution tuition payments and mandatory academic fees for enrollment in schools, colleges, and universities. Transactions represent institutional charges for educational instruction, registration, and required academic fees. Characterized by semester or term-based payments to educational institutions for academic program enrollment.",
+          "example_phrases": ["tuition", "school fees"]
+        },
+        {
+          "subCategoryId": "C902",
+          "subCategoryName": "School Supplies",
+          "description": "Educational materials and supplies purchased for academic purposes including textbooks, notebooks, writing instruments, and classroom materials. Transactions involve buying physical educational resources and school-related supplies. Focused on tangible educational materials and supplies for students.",
+          "example_phrases": ["school supplies"]
+        },
+        {
+          "subCategoryId": "C903",
+          "subCategoryName": "Online Courses",
+          "description": "Digital learning subscriptions and online course enrollment fees for internet-based educational platforms. Transactions include purchasing online classes, e-learning subscriptions, and digital educational content. Characterized by remote learning through digital education platforms and online learning services.",
+          "example_phrases": ["online courses", "e-learning"]
+        },
+        {
+          "subCategoryId": "C904",
+          "subCategoryName": "Tutoring",
+          "description": "Private tutoring services and one-on-one educational instruction provided by individual tutors or tutoring centers. Transactions involve paying for supplemental educational support and personalized instruction. Characterized by individualized learning support and academic coaching services.",
+          "example_phrases": ["tutoring"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1000",
+      "categoryGroupName": "Insurance",
+      "description": "All expenses related to insurance coverage and risk protection across various aspects of personal and family life. This encompasses health, life, property, auto, and other insurance premiums. Represents spending on financial protection and risk management through insurance policies and coverage plans.",
+      "example_phrases": ["insurance"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1001",
+          "subCategoryName": "Health Insurance",
+          "description": "Health insurance premium payments for medical coverage plans protecting against healthcare costs. Transactions represent regular premium payments to health insurance providers for medical, dental, and vision coverage. Characterized by recurring payments for health coverage benefits from insurance companies.",
+          "example_phrases": ["health insurance"]
+        },
+        {
+          "subCategoryId": "C1002",
+          "subCategoryName": "Life Insurance",
+          "description": "Life insurance premium payments for death benefit coverage protecting beneficiaries financially. Transactions involve regular premium payments for term or permanent life insurance policies. Characterized by recurring payments providing financial protection to designated beneficiaries upon death of insured.",
+          "example_phrases": ["life insurance"]
+        },
+        {
+          "subCategoryId": "C1003",
+          "subCategoryName": "Auto Insurance",
+          "description": "Automobile insurance premium payments for vehicle coverage including liability, collision, and comprehensive protection. Transactions represent regular payments to auto insurance companies for vehicle insurance policies. Characterized by recurring premiums covering vehicle damage, liability, and driver protection.",
+          "example_phrases": ["auto insurance", "car insurance"]
+        },
+        {
+          "subCategoryId": "C1004",
+          "subCategoryName": "Home Insurance",
+          "description": "Property insurance premium payments for homeowners or renters coverage protecting dwelling and personal property. Transactions involve regular payments for home insurance policies covering property damage and liability. Characterized by recurring premiums for property protection and homeowner liability coverage.",
+          "example_phrases": ["home insurance", "homeowners insurance"]
+        },
+        {
+          "subCategoryId": "C1005",
+          "subCategoryName": "Other Insurance",
+          "description": "Miscellaneous insurance premium payments not covered by standard health, life, auto, or home categories including disability, umbrella, and specialty coverage. Encompasses diverse insurance types and supplemental protection policies. Serves as catch-all for insurance products outside primary insurance categories.",
+          "example_phrases": ["insurance"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1100",
+      "categoryGroupName": "Taxes",
+      "description": "All tax payments and government-mandated fiscal obligations including federal, state, local, and property taxes. This encompasses income tax payments, property tax assessments, and other governmental tax obligations. Represents mandatory payments to governmental authorities for tax liabilities distinct from voluntary spending categories.",
+      "example_phrases": ["taxes", "tax"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1101",
+          "subCategoryName": "Federal Taxes",
+          "description": "Federal income tax payments and obligations to national government tax authorities. Transactions include estimated tax payments, tax return payments, and federal tax withholding adjustments. Characterized by payments to federal revenue agencies for national income tax obligations.",
+          "example_phrases": ["federal taxes"]
+        },
+        {
+          "subCategoryId": "C1102",
+          "subCategoryName": "State & Local Taxes",
+          "description": "State and municipal income tax payments to state and local government tax authorities. Transactions represent state income tax obligations, local tax payments, and regional tax assessments. Characterized by payments to state and local revenue departments for regional tax obligations.",
+          "example_phrases": ["state taxes", "local taxes"]
+        },
+        {
+          "subCategoryId": "C1103",
+          "subCategoryName": "Property Taxes",
+          "description": "Real estate property tax assessments and payments on owned property to local tax authorities. Transactions involve paying annual or semi-annual property tax bills based on property valuations. Characterized by real estate-based tax assessments from municipal tax collectors.",
+          "example_phrases": ["property taxes"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1200",
+      "categoryGroupName": "Charity & Donations",
+      "description": "All voluntary financial contributions to charitable organizations, religious institutions, and nonprofit causes. This encompasses donations to charities, religious giving, philanthropic contributions, and support for nonprofit organizations. Represents discretionary giving for altruistic purposes and support of causes, missions, and charitable institutions.",
+      "example_phrases": ["charity", "donations"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1201",
+          "subCategoryName": "Charitable Donations",
+          "description": "Financial contributions to registered nonprofit organizations and charitable causes including humanitarian relief, social services, and charitable foundations. Transactions represent voluntary giving to tax-exempt charitable organizations. Characterized by philanthropic donations to recognized charity organizations and nonprofit causes.",
+          "example_phrases": ["charitable donations", "charity"]
+        },
+        {
+          "subCategoryId": "C1202",
+          "subCategoryName": "Religious Organizations",
+          "description": "Financial contributions to churches, temples, mosques, and religious institutions including tithes, offerings, and religious donations. Transactions involve giving to faith-based organizations and places of worship. Characterized by religious giving and support of faith communities and religious institutions.",
+          "example_phrases": ["religious donations", "church"]
+        },
+        {
+          "subCategoryId": "C1203",
+          "subCategoryName": "Political Contributions",
+          "description": "Political campaign donations and contributions to political candidates, parties, and political action committees. Transactions represent voluntary political giving to support electoral campaigns and political causes. Characterized by donations to political entities and electoral campaign support.",
+          "example_phrases": ["political donations", "campaign contributions"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1300",
+      "categoryGroupName": "Pets",
+      "description": "All expenses related to pet ownership and animal care including veterinary services, pet supplies, grooming, and pet-related products. This encompasses healthcare for companion animals, pet nutrition, and pet care services. Represents spending on domestic animal welfare and pet ownership responsibilities.",
+      "example_phrases": ["pets"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1301",
+          "subCategoryName": "Veterinary",
+          "description": "Veterinary medical services for companion animals including examinations, treatments, surgeries, and preventive care at animal hospitals and veterinary clinics. Transactions involve professional animal healthcare from licensed veterinarians. Characterized by medical services for pets at veterinary facilities and animal hospitals.",
+          "example_phrases": ["veterinary", "vet"]
+        },
+        {
+          "subCategoryId": "C1302",
+          "subCategoryName": "Pet Supplies",
+          "description": "Pet food, accessories, toys, and care products purchased from pet stores and pet supply retailers. Transactions include buying food, treats, toys, bedding, and pet care items. Focused on retail pet product purchases distinct from professional veterinary services.",
+          "example_phrases": ["pet supplies", "pet store"]
+        },
+        {
+          "subCategoryId": "C1303",
+          "subCategoryName": "Pet Grooming",
+          "description": "Professional pet grooming services including bathing, haircuts, nail trimming, and cosmetic care for companion animals at pet grooming facilities. Transactions involve appointment-based grooming services from professional pet groomers. Specialized in pet appearance maintenance and hygiene services.",
+          "example_phrases": ["pet grooming"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1400",
+      "categoryGroupName": "Home & Garden",
+      "description": "All expenses related to home improvement, household goods, furnishings, and garden maintenance. This encompasses furniture purchases, home decor, garden supplies, and household items. Represents spending on residential property enhancement and household goods for maintaining and improving living spaces.",
+      "example_phrases": ["home", "garden"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1401",
+          "subCategoryName": "Furniture",
+          "description": "Furniture purchases including sofas, beds, tables, chairs, and other household furnishings from furniture retailers and home furnishing stores. Transactions involve buying large furniture pieces and home furnishing items. Characterized by durable goods for home furnishing from furniture stores and home decor retailers.",
+          "example_phrases": ["furniture"]
+        },
+        {
+          "subCategoryId": "C1402",
+          "subCategoryName": "Home Improvement",
+          "description": "Building materials, tools, and supplies for home renovation, repair, and improvement projects purchased from hardware stores and home improvement centers. Transactions include buying construction materials, hardware, and DIY project supplies. Focused on home renovation and improvement materials from hardware retailers.",
+          "example_phrases": ["home improvement", "hardware"]
+        },
+        {
+          "subCategoryId": "C1403",
+          "subCategoryName": "Home Decor",
+          "description": "Decorative items, artwork, accessories, and aesthetic enhancements for residential interiors from home decor retailers and specialty stores. Transactions involve purchasing decorative objects, wall art, textiles, and ornamental items. Focused on aesthetic home enhancement and interior decorating products.",
+          "example_phrases": ["home decor"]
+        },
+        {
+          "subCategoryId": "C1404",
+          "subCategoryName": "Garden & Lawn",
+          "description": "Garden supplies, plants, lawn care products, and outdoor landscaping materials from garden centers and nurseries. Transactions include buying plants, seeds, fertilizers, gardening tools, and lawn maintenance supplies. Specialized in outdoor gardening and lawn care products and materials.",
+          "example_phrases": ["garden", "lawn"]
+        },
+        {
+          "subCategoryId": "C1405",
+          "subCategoryName": "Appliances",
+          "description": "Major household appliances including refrigerators, washers, dryers, dishwashers, and kitchen appliances from appliance retailers. Transactions involve purchasing large household appliances for home functionality. Characterized by significant household equipment purchases from appliance stores and home retailers.",
+          "example_phrases": ["appliances"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1500",
+      "categoryGroupName": "Financial Services",
+      "description": "All expenses related to banking services, investment management, and financial transaction fees. This encompasses bank charges, ATM fees, wire transfer costs, and financial service provider fees. Represents costs associated with accessing financial services and managing money through financial institutions.",
+      "example_phrases": ["financial services"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1501",
+          "subCategoryName": "Bank Fees",
+          "description": "Banking service charges and account maintenance fees including monthly account fees, overdraft charges, and service fees from banks and credit unions. Transactions represent various bank-imposed fees for account services and banking activities. Characterized by institutional charges from financial institutions for banking services.",
+          "example_phrases": ["bank fees"]
+        },
+        {
+          "subCategoryId": "C1502",
+          "subCategoryName": "ATM Fees",
+          "description": "Automated teller machine usage fees charged for cash withdrawals at out-of-network ATMs and foreign ATM transactions. Transactions involve surcharges for accessing cash through ATM networks outside primary banking relationships. Characterized by per-transaction fees for ATM cash access.",
+          "example_phrases": ["ATM fees"]
+        },
+        {
+          "subCategoryId": "C1503",
+          "subCategoryName": "Wire Transfers",
+          "description": "Wire transfer fees and charges for electronic money transfers between financial institutions domestically and internationally. Transactions represent costs for expedited electronic fund transfers through banking wire networks. Characterized by service fees for sending or receiving wired funds.",
+          "example_phrases": ["wire transfers"]
+        },
+        {
+          "subCategoryId": "C1504",
+          "subCategoryName": "Financial Advisor",
+          "description": "Financial planning and investment advisory service fees paid to financial advisors, wealth managers, and investment consultants. Transactions involve professional financial advice and portfolio management services. Characterized by advisory fees for personalized financial guidance and investment management services.",
+          "example_phrases": ["financial advisor"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1600",
+      "categoryGroupName": "Childcare & Kids",
+      "description": "All expenses related to raising children and childcare services including daycare, children's activities, toys, and child-specific products. This encompasses professional childcare, children's entertainment, kids' clothing, and child development activities. Represents spending on children's needs and development from infancy through adolescence.",
+      "example_phrases": ["childcare", "kids"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1601",
+          "subCategoryName": "Daycare & Nursery",
+          "description": "Professional childcare services provided by daycare centers, nursery schools, and childcare providers including full-day care and preschool programs. Transactions represent regular payments for supervised child supervision and early childhood education. Characterized by institutional or professional care services for young children during working hours.",
+          "example_phrases": ["daycare", "nursery"]
+        },
+        {
+          "subCategoryId": "C1602",
+          "subCategoryName": "Toys & Games",
+          "description": "Children's toys, games, and play items purchased from toy retailers and toy stores. Transactions involve buying playthings, educational toys, board games, and children's entertainment products. Focused specifically on children's play and entertainment products from toy stores and retailers.",
+          "example_phrases": ["toys", "games"]
+        },
+        {
+          "subCategoryId": "C1603",
+          "subCategoryName": "Children's Clothing",
+          "description": "Clothing and footwear specifically designed for children and infants from children's apparel retailers and kids' clothing stores. Transactions involve purchasing age-appropriate clothing for babies, toddlers, and children. Specialized in children's fashion and apparel distinct from adult clothing categories.",
+          "example_phrases": ["children's clothing", "kids clothes"]
+        },
+        {
+          "subCategoryId": "C1604",
+          "subCategoryName": "Kids Activities",
+          "description": "Children's extracurricular programs, recreational activities, and organized activities including sports leagues, music lessons, dance classes, and youth programs. Transactions involve enrollment fees and activity costs for structured children's activities. Characterized by organized recreational and educational programs for children outside regular schooling.",
+          "example_phrases": ["kids activities"]
+        },
+        {
+          "subCategoryId": "C1605",
+          "subCategoryName": "Baby Supplies",
+          "description": "Infant care products and baby necessities including diapers, formula, feeding supplies, and baby gear from baby product retailers. Transactions involve purchasing essential infant care items and baby products. Focused specifically on infant and baby care products for newborns and young babies.",
+          "example_phrases": ["baby supplies"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1700",
+      "categoryGroupName": "Fitness & Sports",
+      "description": "All expenses related to physical fitness, athletic activities, and sports participation. This encompasses gym memberships, fitness classes, sports equipment, and athletic apparel. Represents spending on maintaining physical fitness and participating in athletic activities through both organized facilities and personal equipment.",
+      "example_phrases": ["fitness", "sports"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1701",
+          "subCategoryName": "Gym & Fitness Center",
+          "description": "Fitness facility membership fees and gym access charges for health clubs, fitness centers, and exercise facilities. Transactions represent recurring membership payments for access to workout equipment and fitness facilities. Characterized by subscription-based access to commercial gyms and fitness centers with exercise equipment and amenities.",
+          "example_phrases": ["gym", "fitness center"]
+        },
+        {
+          "subCategoryId": "C1702",
+          "subCategoryName": "Sports Equipment",
+          "description": "Athletic equipment and sporting goods purchases including exercise equipment, sports gear, and athletic accessories from sporting goods stores. Transactions involve buying equipment for various sports and physical activities. Focused on sports-specific equipment and athletic gear for recreational and competitive sports.",
+          "example_phrases": ["sports equipment"]
+        },
+        {
+          "subCategoryId": "C1703",
+          "subCategoryName": "Athletic Apparel",
+          "description": "Specialized athletic clothing, workout wear, and performance apparel designed for exercise and sports activities. Transactions involve purchasing sportswear, athletic shoes, and fitness clothing from athletic apparel retailers. Characterized by performance-focused clothing and footwear for athletic activities distinct from casual clothing.",
+          "example_phrases": ["athletic apparel", "sportswear"]
+        },
+        {
+          "subCategoryId": "C1704",
+          "subCategoryName": "Fitness Classes",
+          "description": "Structured fitness instruction and group exercise classes including yoga, spin, CrossFit, pilates, and personal training sessions. Transactions involve paying for professional fitness instruction and organized exercise classes. Characterized by instructor-led fitness programs and personal training services distinct from independent gym access.",
+          "example_phrases": ["fitness classes"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1800",
+      "categoryGroupName": "Professional Services",
+      "description": "All expenses for specialized professional expertise and service providers including legal, accounting, consulting, and home services. This encompasses professional consultations, expert services, and skilled tradespeople. Represents spending on professional knowledge and specialized service providers for business, personal, and household needs.",
+      "example_phrases": ["professional services"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1801",
+          "subCategoryName": "Legal Services",
+          "description": "Attorney fees and legal professional services including consultations, document preparation, representation, and legal advice from law firms and lawyers. Transactions involve paying for legal expertise, legal representation, and attorney services. Characterized by professional legal counsel and representation for personal or business legal matters.",
+          "example_phrases": ["legal services", "lawyer"]
+        },
+        {
+          "subCategoryId": "C1802",
+          "subCategoryName": "Accounting & Tax",
+          "description": "Professional accounting services and tax preparation assistance from certified public accountants and tax professionals. Transactions include tax return preparation, bookkeeping services, and financial accounting consultation. Characterized by professional financial and tax expertise for tax compliance and accounting needs.",
+          "example_phrases": ["accounting", "tax preparation"]
+        },
+        {
+          "subCategoryId": "C1803",
+          "subCategoryName": "Consulting",
+          "description": "Professional consulting and advisory services from business consultants and specialized advisors providing expert guidance. Transactions involve paying for professional expertise and strategic advice in various domains. Characterized by knowledge-based professional services and expert consultation fees.",
+          "example_phrases": ["consulting"]
+        },
+        {
+          "subCategoryId": "C1804",
+          "subCategoryName": "Home Repairs",
+          "description": "Skilled tradesperson services for home maintenance and repair including plumbing, electrical work, HVAC service, and general contracting. Transactions involve paying for professional home repair and maintenance services. Characterized by specialized trade services for residential property maintenance and repairs.",
+          "example_phrases": ["home repairs", "handyman"]
+        },
+        {
+          "subCategoryId": "C1805",
+          "subCategoryName": "Cleaning Services",
+          "description": "Professional house cleaning and maid services for residential cleaning including regular housekeeping and deep cleaning services. Transactions involve paying for professional residential cleaning services. Characterized by scheduled or one-time professional home cleaning from cleaning service providers.",
+          "example_phrases": ["cleaning services"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG1900",
+      "categoryGroupName": "Automotive",
+      "description": "All expenses related to vehicle maintenance, automotive repairs, and car care services. This encompasses routine vehicle servicing, mechanical repairs, auto parts, and vehicle cleaning. Represents spending on maintaining personal vehicles and ensuring automotive reliability and appearance, distinct from fuel and transportation costs.",
+      "example_phrases": ["automotive"],
+      "subcategories": [
+        {
+          "subCategoryId": "C1901",
+          "subCategoryName": "Car Maintenance",
+          "description": "Routine preventive vehicle maintenance services including oil changes, filter replacements, tire rotations, and scheduled automotive servicing. Transactions involve regular maintenance appointments at auto service centers and dealerships. Characterized by preventive care and scheduled maintenance for vehicle longevity and performance.",
+          "example_phrases": ["car maintenance"]
+        },
+        {
+          "subCategoryId": "C1902",
+          "subCategoryName": "Auto Repairs",
+          "description": "Vehicle repair services for mechanical problems, breakdowns, and automotive system failures performed by mechanics and auto repair shops. Transactions involve diagnosing and fixing vehicle problems and mechanical issues. Characterized by corrective repairs and problem-solving automotive services for vehicle malfunctions.",
+          "example_phrases": ["auto repairs", "mechanic"]
+        },
+        {
+          "subCategoryId": "C1903",
+          "subCategoryName": "Auto Parts",
+          "description": "Automotive parts and vehicle components purchased from auto parts retailers for vehicle repairs and modifications. Transactions involve buying replacement parts, accessories, and automotive components. Focused on retail auto parts purchases for DIY repairs or mechanic installations.",
+          "example_phrases": ["auto parts"]
+        },
+        {
+          "subCategoryId": "C1904",
+          "subCategoryName": "Car Wash",
+          "description": "Vehicle cleaning and detailing services including automated car washes, hand washing, and professional vehicle detailing. Transactions involve paying for exterior and interior vehicle cleaning services. Characterized by automotive appearance maintenance and cleaning services at car wash facilities.",
+          "example_phrases": ["car wash"]
+        }
+      ]
+    },
+    {
+      "categoryGroupId": "CG10000",
+      "categoryGroupName": "Groceries",
+      "description": "All expenses related to purchasing food and household consumables for home use and food preparation. This encompasses supermarket shopping, food stores, wholesale food purchases, and grocery items. Represents spending on unprepared food and household supplies for home consumption, distinct from prepared meals and restaurant dining.",
+      "example_phrases": ["groceries"],
+      "subcategories": [
+        {
+          "subCategoryId": "C10001",
+          "subCategoryName": "Supermarket",
+          "description": "Full-service grocery store purchases at traditional supermarkets and grocery chains offering comprehensive food and household product selections. Transactions involve shopping at conventional grocery stores with diverse food categories and household items. Characterized by one-stop grocery shopping at mainstream supermarket chains and neighborhood grocery stores.",
+          "example_phrases": ["supermarket"]
+        },
+        {
+          "subCategoryId": "C10002",
+          "subCategoryName": "Organic Food Stores",
+          "description": "Specialty organic and natural food purchases at health food stores and organic-focused grocery retailers emphasizing natural and organic products. Transactions involve buying certified organic foods, natural products, and health-conscious groceries. Characterized by specialized organic food retail and natural product focus distinct from conventional supermarkets.",
+          "example_phrases": ["organic food", "health food"]
+        },
+        {
+          "subCategoryId": "C10003",
+          "subCategoryName": "Wholesale Clubs",
+          "description": "Bulk food and household product purchases at membership-based warehouse clubs offering large-quantity items at wholesale prices. Transactions involve buying groceries and household supplies in bulk quantities at warehouse retailers. Characterized by high-volume purchases and membership-based wholesale food shopping.",
+          "example_phrases": ["wholesale", "warehouse club"]
+        },
+        {
+          "subCategoryId": "C10005",
+          "subCategoryName": "Groceries (General)",
+          "description": "General grocery purchases and food shopping transactions not fitting other specific grocery subcategories. Encompasses diverse food retail spending at various food stores and grocery merchants. Serves as catch-all for grocery transactions without specific store type classification.",
+          "example_phrases": ["groceries"]
+        }
+      ]
+    }
+  ]
+}

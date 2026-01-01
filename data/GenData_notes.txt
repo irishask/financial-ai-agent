@@ -1,0 +1,60 @@
+For some “this week” / “recent” style queries in the test script, you rely on the fact that all of that user’s transactions are already in that period, instead of using an explicit date filter.
+
+For your current purpose (per-user synthetic data), this is fine.
+
+In the real agent logic we’ll implement explicit temporal filters anyway.
+
+All fields that don’t exist in the original examples are indeed left empty / NaN in the CSV, as you planned. That’s consistent and safe.
+
+
+
+
+
+
+Perfect. I will recreate the CSV with ONLY explicitly mentioned values.
+
+---
+
+## Analysis of 24 Queries - What's EXPLICITLY Mentioned:
+
+Let me go through the original documents and extract ONLY explicit values:
+
+**From "financial-agent-assignment.docx" example:**
+- Dining October: $523.45 (31 transactions)
+- Dining September: $436.23 (27 transactions)
+- Category: CG800 (Dining)
+
+**From query texts, I can extract:**
+
+1. "What is my current balance?" → Need balance calculation (direction C vs D)
+2. "Show me my last transaction" → Need at least 1 transaction
+3. "What's my account type?" → Explicitly mentions "savings" is expected answer
+4. "How much did I spend last month?" → Need October (month=10) spending
+5. "What's my total income this year?" → Need year=2024, direction=C
+6. "Average transaction amount in checking account" → Explicitly mentions "checking"
+7. "How many transactions this week?" → Need current week (Nov 18-19, 2024)
+8. "Spending this week" → Same as above
+9. "Transactions from March" → Explicitly month=3
+10. "Last 30 days" → Rolling 30 days from Nov 19
+11. "Show dining transactions" → categoryGroupId=CG800
+12. "Coffee shop expenses" → subCategoryId=C806
+13. "Fast food spending" → subCategoryId=C802
+14. "Groceries last month" → categoryGroupId=CG10000, month=10
+15. "Dining last month compared to September" → CG800, month=10 and month=9
+
+**Other queries are VAGUE** - need clarification, so minimal data.
+
+---
+
+## Fields I will populate:
+
+**Always populated (to make data work):**
+- transaction_id, user_id, account_id, amount, direction, date, month, year
+
+**Populated ONLY when explicitly mentioned:**
+- account_type (ONLY for USER_006="checking", USER_003="savings")
+- day, dayOfWeek (ONLY when needed for "this week", "weekend", "March")
+- dateInUserLocalTime (leave empty)
+- categoryGroupId, categoryName (ONLY when category mentioned)
+- subCategoryId, subCategoryName (ONLY when subcategory mentioned)
+
