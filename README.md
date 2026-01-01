@@ -1,14 +1,12 @@
 # Financial AI Agent
 
-An AI-powered conversational agent that helps retail banking customers understand their financial behavior through natural language — like asking a financial advisor.
-
-> **Interview Project** | Data Scientist (GenAI) Position | December 2025
+An AI-powered conversational agent that helps retail banking customers understand their financial behavior through natural language.
 
 ---
 
-## 🎯 The Challenge
+## 🎯 Overview
 
-Build an intelligent system that:
+An intelligent system that:
 - Understands natural language financial questions
 - Provides accurate, simple answers to customers
 - Maintains complete reasoning trails for regulatory compliance
@@ -19,10 +17,7 @@ User: "How much did I spend on dining last month compared to September?"
 
 Agent: "You spent $389.40 on dining in November compared to $668.20 in 
         September. That's a decrease of $278.80 (42% less)."
-
-BackOffice Log: [complete audit trail with data sources, filters, calculations]
 ```
-
 
 ---
 
@@ -110,7 +105,7 @@ BackOffice Log: [complete audit trail with data sources, filters, calculations]
 | Orchestration | LangGraph (state machine) |
 | LLM | Claude 3.5 Sonnet (Anthropic) |
 | Embeddings | `intfloat/multilingual-e5-base` |
-| Vector Store | ChromaDB (persistent) |
+| Vector Store | ChromaDB |
 | Framework | LangChain |
 | Language | Python 3.12 |
 
@@ -118,23 +113,17 @@ BackOffice Log: [complete audit trail with data sources, filters, calculations]
 
 ## ☁️ Deployment
 
-**Current:** Local development environment (Windows/Mac/Linux)
+**Current:** Local environment
 
-**Cloud-Ready:** Built with modular architecture for easy deployment to cloud platforms:
+**Cloud-Ready Architecture:**
 
-| Component | Local (Demo) | Cloud (Production) |
-|-----------|--------------|-------------------|
-| Vector Store | ChromaDB (local) | Pinecone / AWS OpenSearch |
-| Transaction DB | CSV file | PostgreSQL / DynamoDB |
+| Component | Local | Cloud |
+|-----------|-------|-------|
+| Vector Store | ChromaDB | Pinecone / AWS OpenSearch |
+| Transaction DB | CSV | PostgreSQL / DynamoDB |
 | LLM API | Anthropic API | Anthropic API / AWS Bedrock |
-| Orchestration | Local Python | AWS Lambda / ECS / Kubernetes |
+| Orchestration | Python | AWS Lambda / ECS / Kubernetes |
 | Caching | — | Redis / ElastiCache |
-
-**Why easy to deploy?**
-- Stateless LangGraph pipeline
-- Environment variables for configuration
-- Modular components with clear interfaces
-- Pydantic models for data validation
 
 ---
 
@@ -143,25 +132,24 @@ BackOffice Log: [complete audit trail with data sources, filters, calculations]
 ```
 financial-ai-agent/
 ├── data/
-│   ├── transactions.csv          # Demo: 147 transactions (2024-2025)
-│   ├── CategoriesKB.json         # 20 groups, 88 subcategories
-│   └── chroma_trn_categories/    # Persistent vector store
+│   ├── transactions.csv
+│   ├── CategoriesKB.json
+│   └── chroma_trn_categories/
 ├── prompts/
-│   ├── llm1_prompt.py            # Router prompt + injection functions
-│   └── llm2_prompt.py            # Executor prompt builder
+│   ├── llm1_prompt.py
+│   └── llm2_prompt.py
 ├── schemas/
-│   ├── router_models.py          # Pydantic models (GraphState, RouterOutput, etc.)
-│   ├── transactions_tool.py      # query_transactions tool
-│   └── trn_category_tool.py      # RAG search tool
+│   ├── router_models.py
+│   ├── transactions_tool.py
+│   └── trn_category_tool.py
 ├── tests/
-│   ├── _new_QA_mapping.json      # 17 test queries with expectations
-│   ├── pipeline_rag_tests.py     # UC-04 tests with validation
-│   ├── pipeline_no_rag_tests.py  # UC-01/UC-05 tests
-│   ├── llm1_tests.py             # Multi-turn VAGUE→CLEAR tests
-│   └── dynamic_expected_calculator.py  # Calculates expected values from CSV
-├── graph_definition.py           # LangGraph nodes and edges
-├── trn_category_rag.py           # RAG vector store builder
-└── FinantialAI_Run_Demo_with_RAG_tests.ipynb  # Main demo notebook
+│   ├── pipeline_rag_tests.py
+│   ├── pipeline_no_rag_tests.py
+│   ├── llm1_tests.py
+│   └── dynamic_expected_calculator.py
+├── graph_definition.py
+├── trn_category_rag.py
+└── FinantialAI_Run_Demo_with_RAG_tests.ipynb
 ```
 
 ---
@@ -169,138 +157,63 @@ financial-ai-agent/
 ## ⚙️ Installation
 
 ```bash
-# Clone repository
 git clone https://github.com/irishask/financial-ai-agent.git
 cd financial-ai-agent
 
-# Create environment
 conda create -n financial-agent python=3.12
 conda activate financial-agent
 
-# Install dependencies
 pip install -r requirements.txt
 
 # Set up API key
 echo "ANTHROPIC_API_KEY=your-key-here" > .env
 ```
 
-### Requirements
-
-```
-langchain>=0.3.0
-langchain-anthropic>=0.3.0
-langgraph>=0.2.0
-chromadb>=0.5.0
-sentence-transformers>=3.0.0
-pandas>=2.0.0
-python-dotenv>=1.0.0
-pydantic>=2.0.0
-```
-
 ---
 
-## 📅 Demo Date Configuration
+## 🚀 Running
 
-The demo uses a **frozen reference date** to align with the synthetic transaction data.
+> **Note:** The current repository uses a fixed reference date for test reproducibility. For production, update the date configuration in `prompts/llm1_prompt.py`.
 
-### Two Files Must Be Synchronized
-
-| File | Line | Demo Setting |
-|------|------|--------------|
-| `prompts/llm1_prompt.py` | ~546 | `current_date = "2025-12-01"` |
-| `tests/dynamic_expected_calculator.py` | ~56 | `self.today = datetime(2025, 12, 1).date()` |
-
-### Why This Matters
-
-| Reference Date | "Last month" | "This year" | Data Available |
-|----------------|--------------|-------------|----------------|
-| ❌ Jan 1, 2026 | Dec 2025 | 2026 | Limited/None |
-| ✅ Dec 1, 2025 | **Nov 2025** | **2025** | Rich data |
-
-### Demo Data Coverage (Reference: Dec 1, 2025)
-
-| Category | Nov 2025 | Oct 2025 | Sep 2025 |
-|----------|----------|----------|----------|
-| Dining (CG800) | $389.40 | $663.60 | $668.20 |
-| Groceries (CG10000) | $524.10 | — | — |
-| Healthcare (CG300) | $136.75 | $195.80 | — |
-| Utilities (CG200) | $222.29 | $205.39 | — |
-| Gym (C1701) | $49.99/mo | $49.99/mo | $49.99/mo |
-
-### Switching to Production
-
-```python
-# In llm1_prompt.py (line ~546):
-current_date = date.today().isoformat()   # PRODUCTION
-
-# In dynamic_expected_calculator.py (line ~56):
-self.today = datetime.now().date()         # PRODUCTION
-```
-
----
-
-## 🚀 Running the Demo
-
-### Option 1: Jupyter Notebook (Recommended)
+### Jupyter Notebook
 
 ```bash
 jupyter notebook FinantialAI_Run_Demo_with_RAG_tests.ipynb
 ```
 
-### Option 2: Run Tests Directly
+### Test Suite
 
 ```bash
-# Build/load vector store
 python trn_category_rag.py
-
-# Run UC-04 RAG tests
 python tests/pipeline_rag_tests.py
-
-# Run UC-01/UC-05 tests
 python tests/pipeline_no_rag_tests.py
-
-# Run multi-turn VAGUE tests
 python tests/llm1_tests.py
 ```
 
 ---
 
-## 📊 Test Results
+## 📊 Test Coverage
 
-**All tests passing: 17/17 = 100%**
+| Category | Coverage |
+|----------|----------|
+| Direct Retrieval (UC-01) | Balance queries, last transaction |
+| Aggregation (UC-02) | Spending totals, period comparisons |
+| Temporal (UC-03) | Date resolution, cross-year queries |
+| Category-Based (UC-04) | RAG mapping, hierarchy navigation |
+| Ambiguity Handling (UC-05) | VAGUE detection, multi-turn clarification |
 
-| Test Suite | Queries | Result |
-|------------|---------|--------|
-| CLEAR without RAG (UC-01) | #1, #2 | 2/2 ✅ |
-| VAGUE without RAG (UC-05) | #12, #13 | 2/2 ✅ |
-| RAG Pipeline (UC-04) | #3, #4, #7, #8, #9, #10, #16, #17 | 8/8 ✅ |
-| VAGUE Multi-Turn (UC-05) | #11, #12, #13, #14, #15 | 5/5 ✅ |
+### Validation
 
-### Validation Checks (15 per query)
-
-- ✅ RAG tool called
-- ✅ Category mapping correct
-- ✅ CLEAR/VAGUE classification correct
-- ✅ Dates resolved correctly
-- ✅ LLM-2 grounded (uses only LLM-1 data)
-- ✅ Correct tables accessed
-- ✅ Correct filters applied
-- ✅ Answer matches expected values
+- ✅ RAG category mapping accuracy
+- ✅ CLEAR/VAGUE classification
+- ✅ Temporal resolution
+- ✅ LLM-2 grounding (no hallucination)
+- ✅ Back-office logging
+- ✅ Answer accuracy
 
 ---
 
-## 🗺️ Roadmap (Not Implemented)
-
-| Component | Purpose | Status |
-|-----------|---------|--------|
-| Multi-Turn Security | Prompt injection detection | ❌ Designed |
-| Resilience | Retry logic, circuit breakers | ❌ Roadmap |
-| Observability Dashboards | Grafana metrics | ❌ Roadmap |
-| Production Monitoring | Latency, accuracy tracking | ❌ Roadmap |
-
----
-
-## 📄 Architecture Document
+## 📄 Documentation
 
 For complete technical details, see: `docs/FINAL_Financial_AI_Agent_Architecture.docx`
 
@@ -308,11 +221,11 @@ For complete technical details, see: `docs/FINAL_Financial_AI_Agent_Architecture
 
 ## 👤 Author
 
-**Irena SK**  
+**Irena Shtelman Kravitz**  
 Data Scientist | GenAI Specialist
 
 ---
 
 ## 📝 License
 
-This project was created as part of an interview assignment. Not for commercial use.
+© 2025 Irena Shtelman Kravitz. All rights reserved.
