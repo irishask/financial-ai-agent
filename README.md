@@ -116,6 +116,28 @@ BackOffice Log: [complete audit trail with data sources, filters, calculations]
 
 ---
 
+## ☁️ Deployment
+
+**Current:** Local development environment (Windows/Mac/Linux)
+
+**Cloud-Ready:** Built with modular architecture for easy deployment to cloud platforms:
+
+| Component | Local (Demo) | Cloud (Production) |
+|-----------|--------------|-------------------|
+| Vector Store | ChromaDB (local) | Pinecone / AWS OpenSearch |
+| Transaction DB | CSV file | PostgreSQL / DynamoDB |
+| LLM API | Anthropic API | Anthropic API / AWS Bedrock |
+| Orchestration | Local Python | AWS Lambda / ECS / Kubernetes |
+| Caching | — | Redis / ElastiCache |
+
+**Why easy to deploy?**
+- Stateless LangGraph pipeline
+- Environment variables for configuration
+- Modular components with clear interfaces
+- Pydantic models for data validation
+
+---
+
 ## 📁 Project Structure
 
 ```
@@ -148,7 +170,7 @@ financial-ai-agent/
 
 ```bash
 # Clone repository
-git clone https://github.com/YOUR_USERNAME/financial-ai-agent.git
+git clone https://github.com/irishask/financial-ai-agent.git
 cd financial-ai-agent
 
 # Create environment
