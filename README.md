@@ -149,7 +149,7 @@ financial-ai-agent/
 │   └── dynamic_expected_calculator.py
 ├── graph_definition.py
 ├── trn_category_rag.py
-└── FinantialAI_Run_Demo_with_RAG_tests.ipynb
+└── FinantialAI_Run_Demo.ipynb
 ```
 
 ---
@@ -178,7 +178,7 @@ echo "ANTHROPIC_API_KEY=your-key-here" > .env
 ### Jupyter Notebook
 
 ```bash
-jupyter notebook FinantialAI_Run_Demo_with_RAG_tests.ipynb
+jupyter notebook FinantialAI_Run_Demo.ipynb
 ```
 
 ### Test Suite
