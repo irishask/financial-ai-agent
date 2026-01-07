@@ -4,97 +4,199 @@ An AI-powered conversational agent that helps retail banking customers understan
 
 ---
 
-## 🎯 Overview
+## 🎯 The Challenge
 
-An intelligent system that:
+### Business Problem
+Bank customers want to ask simple questions like *"How much did I spend on groceries last month?"* — but today this requires navigating complex banking interfaces and manual data analysis.
+
+### Solution Requirements
+Build an intelligent system that:
 - Understands natural language financial questions
-- Provides accurate, simple answers to customers
-- Maintains complete reasoning trails for regulatory compliance
+- Provides **simple answers** to customers
+- Maintains **complete audit trails** for regulatory compliance
 
 **Example:**
 ```
-User: "How much did I spend on dining last month compared to September?"
+User: "Show me expenses related to car ownership and mobility, 
+       but exclude public transportation, this year"
 
-Agent: "You spent $389.40 on dining in November compared to $668.20 in 
-        September. That's a decrease of $278.80 (42% less)."
+Agent: "Your private transportation expenses this year total $2,847.50 
+        across 47 transactions (gas, parking, ride-sharing). 
+        Public transportation excluded as requested."
+
+BackOffice Log: [full audit trail with RAG category mapping, 
+                inclusion/exclusion logic, filters, calculations]
 ```
+
+### Dual Output
+| Output | Audience | Content |
+|--------|----------|---------|
+| **Customer Answer** | User | Simple, conversational response |
+| **Back-Office Log** | Compliance | Full reasoning trail, data sources, calculations |
+
+---
+
+## 🧩 Query Types & Complexity Challenges
+
+### 5 Core Query Types
+
+| UC | Type | Example |
+|----|------|---------|
+| UC-01 | Direct Retrieval | "What is my current balance?" |
+| UC-02 | Aggregation | "How much did I spend last month?" |
+| UC-03 | Temporal | "Transactions from March" |
+| UC-04 | Category-Based | "Show dining transactions" |
+| UC-05 | Ambiguity | "Recent transactions" → needs clarification |
+
+### 3 Complexity Challenges
+
+| Challenge | Problem | Solution |
+|-----------|---------|----------|
+| **Temporal Logic** | "Last month" = calendar month or rolling 30 days? | LLM-1 resolves to exact dates |
+| **Category Mapping** | "groceries" → which of 100+ categories? | RAG semantic search |
+| **Intent Disambiguation** | "recent" = 7 days? 30 days? | Multi-turn clarification |
 
 ---
 
 ## 🏗️ Architecture
 
-**2-LLM Pipeline orchestrated by LangGraph:**
+**2-LLM Pipeline with Multi-Turn Clarification:**
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         USER QUERY                                   │
-└─────────────────────────────────────────────────────────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│  LLM-1: ROUTER                                                       │
-│  • Classify: CLEAR or VAGUE                                          │
-│  • Resolve temporal references → exact dates                         │
-│  • Map categories via RAG → category IDs                             │
-│  • Detect missing info → generate clarifying questions               │
-└─────────────────────────────────────────────────────────────────────┘
-                                │
-                ┌───────────────┴───────────────┐
-                ▼                               ▼
-        ┌───────────┐                   ┌─────────────┐
-        │   CLEAR   │                   │    VAGUE    │
-        └─────┬─────┘                   └──────┬──────┘
-              │                                │
-              ▼                                ▼
-┌─────────────────────────┐         ┌──────────────────────┐
-│  LLM-2: EXECUTOR        │         │  VAGUE HANDLER       │
-│  • Call tools           │         │  • Return question   │
-│  • Query transactions   │         │  • Skip LLM-2 (save  │
-│  • Generate answer      │         │    cost, no halluc.) │
-│  • Log reasoning        │         └──────────────────────┘
-└─────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│  DUAL OUTPUT                                                         │
-│  • Customer: Simple, conversational answer                           │
-│  • BackOffice: Full audit trail (tables, filters, calculations)      │
-└─────────────────────────────────────────────────────────────────────┘
+                              ┌─────────────────────┐
+                              │     USER QUERY      │
+                              └──────────┬──────────┘
+                                         │
+                                         ▼
+┌────────────────────────────────────────────────────────────────────────────┐
+│  LLM-1: ROUTER                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                      │
+│  │   TEMPORAL   │  │   CATEGORY   │  │    INTENT    │                      │
+│  │    LOGIC     │  │  MAPPING     │  │ DISAMBIGUATION│                      │
+│  │              │  │   (RAG)      │  │              │                      │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘                      │
+│         │                 │                 │                              │
+│         ▼                 ▼                 ▼                              │
+│      CLEAR?            CLEAR?            CLEAR?                            │
+│         │                 │                 │                              │
+│         └────────────┬────┴─────────────────┘                              │
+│                      ▼                                                     │
+│              ┌──────────────┐                                              │
+│              │  ALL CLEAR?  │                                              │
+│              └──────┬───────┘                                              │
+└─────────────────────┼──────────────────────────────────────────────────────┘
+                      │
+          ┌───────────┴───────────┐
+          ▼                       ▼
+        YES                      NO
+     ┌───────┐              ┌─────────┐
+     │ CLEAR │              │  VAGUE  │
+     └───┬───┘              └────┬────┘
+         │                       │
+         │                       ▼
+         │              ┌──────────────────────┐
+         │              │  CLARIFICATION       │◄───────────────┐
+         │              │  ┌────────────────┐  │                │
+         │              │  │ Ask user for   │  │                │
+         │              │  │ missing info   │  │                │
+         │              │  └───────┬────────┘  │                │
+         │              │          │           │                │
+         │              │          ▼           │                │
+         │              │  ┌────────────────┐  │                │
+         │              │  │ Update         │  │                │
+         │              │  │ Conversation   │  │                │
+         │              │  │ Summary        │  │                │
+         │              │  └───────┬────────┘  │                │
+         │              │          │           │                │
+         │              └──────────┼───────────┘                │
+         │                         │                            │
+         │                         ▼                            │
+         │              ┌────────────────────┐                  │
+         │              │  USER RESPONDS     │                  │
+         │              │  (Multi-Turn)      │                  │
+         │              └─────────┬──────────┘                  │
+         │                        │                             │
+         │                        ▼                             │
+         │              ┌────────────────────┐                  │
+         │              │  RE-EVALUATE       │                  │
+         │              │  with LLM-1        │                  │
+         │              └─────────┬──────────┘                  │
+         │                        │                             │
+         │                   NOW CLEAR?                         │
+         │                        │                             │
+         │              ┌─────────┴─────────┐                   │
+         │              ▼                   ▼                   │
+         │             YES                  NO                  │
+         │              │                   │                   │
+         │              │                   └───────────────────┘
+         │              │                   (loop back to clarification)
+         ▼              ▼
+┌─────────────────────────────┐
+│  LLM-2: EXECUTOR            │
+│  • Query DB                 │
+│  • Calculate                │
+│  • Generate answer          │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  DUAL OUTPUT                                                    │
+│  ┌─────────────────────┐    ┌─────────────────────────────────┐ │
+│  │  CUSTOMER ANSWER    │    │  BACK-OFFICE LOG                │ │
+│  │  Simple response    │    │  • Original query               │ │
+│  │  to user            │    │  • Conversation summary         │ │
+│  │                     │    │  • Resolved dates & categories  │ │
+│  │                     │    │  • SQL filters applied          │ │
+│  │                     │    │  • Transactions analyzed        │ │
+│  │                     │    │  • Aggregations used            │ │
+│  │                     │    │  • Reasoning steps              │ │
+│  └─────────────────────┘    └─────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-**Why 2 LLMs?**
+### Why 2 LLMs?
 - **Cost optimization:** Cheaper model for routing, capable model for execution
 - **Better debugging:** Know exactly where issues occur
-- **VAGUE queries skip LLM-2:** Saves cost on incomplete queries
+- **VAGUE queries skip LLM-2:** No hallucinated answers on incomplete queries
 
 ---
 
-## ✅ Features
+## 📋 Back-Office Logging
 
-### 5 Core Use Case Categories
+Every query generates a complete audit trail:
 
-| UC | Category | Examples |
-|----|----------|----------|
-| UC-01 | Direct Retrieval | "What is my current balance?", "Show my last transaction" |
-| UC-02 | Aggregation | "How much did I spend last month?", "Total income this year" |
-| UC-03 | Temporal | "Spending this week", "Transactions from March" |
-| UC-04 | Category-Based | "How much on groceries?", "Show dining transactions" |
-| UC-05 | Ambiguity Handling | "Recent transactions" → asks for timeframe |
-
-### 3 Complexity Challenges Solved
-
-| Challenge | Problem | Solution |
-|-----------|---------|----------|
-| **Temporal Logic** | "Last month" = calendar month or rolling 30 days? | LLM-1 resolves to exact dates before LLM-2 |
-| **Category Mapping** | "groceries" → which of 100+ categories? | RAG with ChromaDB + semantic search |
-| **Intent Disambiguation** | "recent" = 7 days? 30 days? | VAGUE detection → clarifying questions |
-
-### Additional Features
-
-- **Multi-turn conversations:** Collects missing info across turns
-- **Conversation Summary:** Remembers user preferences within session
-- **Grounding verification:** LLM-2 uses ONLY data from LLM-1 (no hallucination)
-- **Back-office logging:** Complete audit trail for compliance
+```json
+{
+  "original_query": "Show me expenses related to car ownership and mobility, but exclude public transportation, this year",
+  "conversation_summary": {
+    "time_window": "this_year",
+    "resolved_dates": {"start": "2025-01-01", "end": "2025-12-31"}
+  },
+  "category_mapping": {
+    "user_term": "car ownership and mobility",
+    "included": ["C101 (Gas Station)", "C102 (Parking)", "C107 (Taxi & Ride Sharing)"],
+    "excluded": ["C103 (Public Transportation)"],
+    "method": "RAG semantic search"
+  },
+  "execution": {
+    "tables_accessed": ["transactions"],
+    "filters_applied": [
+      "categoryId IN ('C101', 'C102', 'C107')",
+      "categoryId NOT IN ('C103')",
+      "date BETWEEN '2025-01-01' AND '2025-12-31'"
+    ],
+    "transactions_analyzed": 47,
+    "aggregations_used": ["SUM(amount)", "COUNT(*)"]
+  },
+  "reasoning_steps": [
+    "Mapped 'car ownership and mobility' → C101, C102, C107 via RAG",
+    "Excluded 'public transportation' → C103",
+    "Resolved 'this year' → Jan 1 - Dec 31, 2025",
+    "Retrieved 47 transactions totaling $2,847.50"
+  ],
+  "answer": "Your private transportation expenses this year total $2,847.50 across 47 transactions."
+}
+```
 
 ---
 
@@ -123,7 +225,6 @@ Agent: "You spent $389.40 on dining in November compared to $668.20 in
 | Transaction DB | CSV | PostgreSQL / DynamoDB |
 | LLM API | Anthropic API | Anthropic API / AWS Bedrock |
 | Orchestration | Python | AWS Lambda / ECS / Kubernetes |
-| Caching | — | Redis / ElastiCache |
 
 ---
 
@@ -165,7 +266,6 @@ conda activate financial-agent
 
 pip install -r requirements.txt
 
-# Set up API key
 echo "ANTHROPIC_API_KEY=your-key-here" > .env
 ```
 
@@ -173,7 +273,7 @@ echo "ANTHROPIC_API_KEY=your-key-here" > .env
 
 ## 🚀 Running
 
-> **Note:** The current repository uses a fixed reference date for test reproducibility. For production, update the date configuration in `prompts/llm1_prompt.py`.
+> **Note:** Repository uses a fixed reference date for test reproducibility. For production, update date configuration in `prompts/llm1_prompt.py`.
 
 ### Jupyter Notebook
 
@@ -201,21 +301,6 @@ python tests/llm1_tests.py
 | Temporal (UC-03) | Date resolution, cross-year queries |
 | Category-Based (UC-04) | RAG mapping, hierarchy navigation |
 | Ambiguity Handling (UC-05) | VAGUE detection, multi-turn clarification |
-
-### Validation
-
-- ✅ RAG category mapping accuracy
-- ✅ CLEAR/VAGUE classification
-- ✅ Temporal resolution
-- ✅ LLM-2 grounding (no hallucination)
-- ✅ Back-office logging
-- ✅ Answer accuracy
-
----
-
-## 📄 Documentation
-
-For complete technical details, see: `docs/FINAL_Financial_AI_Agent_Architecture.docx`
 
 ---
 
